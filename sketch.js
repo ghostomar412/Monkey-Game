@@ -36,7 +36,7 @@ function draw() {
   monkey.collide(ground);
   if(monkey.isTouching(rockGroup)){
   bakground.velocityX=0
-  rockGroup.velocityX=0
+  rockGroup.destroyEach();
   ground.velocityX=0
     monkey.x=400;
   monkey.y=300;
@@ -44,6 +44,8 @@ function draw() {
   monkey.addImage("monkey",gameOver);
 monkey.velocityY = monkey.velocityY
     monkey.scale=0.9
+    score=0;
+    monkey.setCollider("rectangle",0,0,800,600);
   }
   if(keyDown("space")&&monkey.y>523){
   monkey.velocityY=-20
@@ -61,7 +63,7 @@ score=score+1
 
 
 }
-
+//monkey.debug=true;
 
   
   drawSprites();
@@ -76,12 +78,12 @@ function spawnRocks(){
    rock.scale=0.4;
     rockGroup.add(rock);
    //rock.debug = true;
-   rock.setCollider("rectangle",0,0,400,350);
+   rock.setCollider("rectangle",-45,0,350,350);
  }
 }
 function spawnBanana(){
 
-  if (frameCount % 75 === 0) {
+  if (frameCount % 250 === 0) {
     var banana = createSprite(800,100,40,10);
     banana.y = random(500,500);    
     banana.addImage(bananaImage);
